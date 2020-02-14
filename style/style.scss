@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Molle:400i&display=swap');
+$color-background-base: #222222;
+$color-background-optional: #303030;
+$color-base: #008966;
+$color-optional: #00BC8C;
+$color-text: #ffffff;
+$color-border-base: #808080;
+$font-logo:'Molle',
+cursive;
+$font-base: 'Lato',
+sans-serif;
+%reset-shared {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+p {
+    @extend %reset-shared;
+    color: $color-text;
+    font-family: $font-base;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1024px;
+    background: $color-background-base;
+    padding: 0 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 40px 0;
+    &__logo {
+        font: 3rem $font-logo;
+        &__item {
+            &:first-child {
+                color: $color-base;
+            }
+        }
+    }
+    &__score {
+        font-size: 1.6rem;
+        line-height: 1.7;
+        &__item {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.navigation {
+    &__menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        @extend %reset-shared;
+        &__item {
+            width: 100%;
+            list-style: none;
+            padding: 10px 0;
+            background: $color-base;
+            text-align: center;
+            border-right: 1px solid $color-optional;
+            &:first-child {
+                border-radius: 5px 0 0 5px;
+            }
+            &:last-child {
+                border-radius: 0 5px 5px 0;
+                border-right: none;
+            }
+            a {
+                font: 1rem $font-base;
+                color: $color-text;
+                text-decoration: none;
+                cursor: auto;
+            }
+            &.selected {
+                background: $color-optional;
+            }
+        }
+    }
+}
+
+.songbird {
+    margin: 40px 0;
+    &__photo {
+        width: 20%;
+    }
+    &__name {}
+    &__audio {}
+}
+
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    &__answers {
+        width: calc(50% - 10px);
+        background: $color-background-optional;
+        border: 1px solid $color-border-base;
+        border-radius: 5px;
+        @extend %reset-shared;
+        &__task {
+            padding: 15px 20px;
+        }
+        &__item {
+            list-style: none;
+            color: $color-text;
+            padding: 15px 20px;
+            border-bottom: 1px solid $color-border-base;
+            font: 1rem $font-base;
+            &:last-child {
+                border-bottom: none;
+            }
+            &__btn {
+                color: $color-background-base;
+                margin-right: 15px;
+                font-size: 1rem;
+            }
+            &:hover {
+                cursor: pointer;
+                background-color: $color-background-base;
+                &:first-child {
+                    border-radius: 5px 5px 0 0;
+                }
+                &:last-child {
+                    border-radius: 0 0 5px 5px;
+                }
+                .task-container__answers__item__btn {
+                    color: $color-background-optional;
+                }
+            }
+        }
+    }
+}
+
+.btn {
+    background: $color-base;
+    width: 100%;
+    margin: 40px 0;
+    padding: 10px 0;
+    font: 1.2rem $font-base;
+    border-radius: 5px;
+    border: none;
+    &.disabled {
+        background-color: $color-background-optional;
+        color: $color-border-base;
+        &:hover {
+            color: $color-text;
+            cursor: pointer;
+        }
+    }
+    &.enabled {
+        background-color: $color-base;
+        color: $color-text;
+        &:hover {
+            cursor: pointer;
+            background: $color-optional;
+        }
+    }
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+@media (max-width: 740px) {
+    .navigation {
+        &__menu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            &__item {
+                border-bottom: 1px solid $color-optional;
+                border-right: none;
+                &:first-child {
+                    border-radius: 5px 0 0 0;
+                }
+                &:last-child {
+                    border-radius: 0 0 5px 0;
+                }
+                &:nth-child(3) {
+                    border-radius: 0 5px 0 0;
+                }
+                &:nth-child(4) {
+                    border-radius: 0 0 0 5px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 520px) {
+    .task-container {
+        flex-direction: column;
+        &__answers {
+            width: 100%;
+            margin: 10px 0;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .navigation {
+        &__menu {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            &__item {
+                &:nth-child(3) {
+                    border-radius: 0;
+                }
+                &:nth-child(4) {
+                    border-radius: 0;
+                }
+                &:nth-child(2) {
+                    border-radius: 0 5px 0 0;
+                }
+                &:nth-child(5) {
+                    border-radius: 0 0 0 5px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .header {
+        &__logo {
+            font: 2rem $font-logo;
+        }
+        &__score {
+            font-size: 1.2rem;
+            &__item {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 310px) {
+    .navigation {
+        &__menu {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            &__item {
+                &:first-child {
+                    border-radius: 5px 5px 0 0;
+                }
+                &:last-child {
+                    border-radius: 0 0 5px 5px;
+                }
+                &:nth-child(2) {
+                    border-radius: 0;
+                }
+                &:nth-child(5) {
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}
